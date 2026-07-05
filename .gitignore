@@ -1,0 +1,17 @@
+# Local/private Codex state
+.env
+*.local.*
+*.secret.*
+private/
+.private/
+
+# Generated artifacts
+*.pdf
+_pdf*
+__pycache__/
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
