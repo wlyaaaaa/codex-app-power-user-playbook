@@ -11,6 +11,7 @@ If you are trying to answer questions like these, this repo is for you:
 - How do I write global `AGENTS.md` rules that Codex can actually follow?
 - How do I test Codex App capabilities instead of guessing what works?
 - How do I keep powerful local automation useful without accidentally publishing secrets or breaking my machine?
+- How do I separate Codex's runtime home, long-term rules source, and safe memory backups?
 
 ## What You Get
 
@@ -18,6 +19,7 @@ If you are trying to answer questions like these, this repo is for you:
 - A capability map for Codex App power users.
 - A tested Markdown-to-PDF skill example with a self-contained script.
 - Practical rules for using skills and plugins as reusable capability packages.
+- A durable-state pattern for global rules, personal skills/plugins, and private memory backups.
 - Safety boundaries for GitHub, browser automation, local files, desktop control, and external side effects.
 
 ## Highlights
@@ -59,6 +61,16 @@ The repo includes a small Markdown-to-PDF example:
 
 The example is intentionally self-contained. It avoids depending on random files from another project directory, handles Windows + Edge headless rendering, and prints to an ASCII temporary PDF path before replacing the final target file.
 
+### Durable State Pattern
+
+Codex App has several kinds of local state. Treat them differently:
+
+- Runtime home, such as `~/.codex`: app config, installed state, caches, sessions, generated memories, and system/plugin artifacts.
+- Long-term source repo: your curated `AGENTS.md`, user guide, capability map, personal skills, and plugin source.
+- Private memory backup repo: a whitelist-only backup of safe runtime-home files.
+
+Do not turn the whole runtime home into your source repo. If you back it up, use a separate private repo, exclude auth/session/database/cache data, preserve richer historical memory files, and verify scheduled backups with both task status and log evidence.
+
 ## Quick Start
 
 1. Copy [templates/AGENTS.public.md](templates/AGENTS.public.md) into your project or global Codex rules.
@@ -66,6 +78,7 @@ The example is intentionally self-contained. It avoids depending on random files
 3. Add one small skill for a task you repeat often.
 4. Test it in a fresh Codex thread.
 5. When a skill or plugin fails in a real task, update the skill/plugin itself, not just your memory of the fix.
+6. Decide where your long-term Codex source lives, and keep it separate from the runtime home and private memory backup repo.
 
 ## Important Safety Note
 
@@ -80,6 +93,7 @@ Global agent files often contain:
 - Account names.
 - Security assumptions.
 - Rules that only make sense on one trusted machine.
+- Backup task names, private repo names, and local scheduler details.
 
 For public repos, publish templates and examples, not your private operational manual.
 

@@ -52,6 +52,16 @@ Before acting, route the task to the right Codex capability.
 - Put scripts, templates, and helper assets next to the skill/plugin.
 - Avoid depending on random files from unrelated local project folders.
 
+## Durable State Layout
+
+- Keep the app runtime home, such as `~/.codex`, separate from your long-term rule and capability source repo.
+- Treat the runtime home as config, installed state, caches, sessions, memories, and diagnostics, not as your main source repo.
+- Keep curated global rules, user guides, capability notes, personal skills, and personal plugin source in a stable repo or directory.
+- If you back up runtime-home memory, use a separate private repo and a whitelist-only sync.
+- Do not mirror auth files, sessions, JSONL logs, SQLite databases, caches, temp directories, or package/plugin caches.
+- Preserve richer historical memory backups when the current runtime memory file is smaller.
+- Verify scheduled backups with task status, result code, logs, local snapshot presence, and Git remote state.
+
 ## Verification
 
 Before claiming completion:
@@ -82,5 +92,6 @@ Remove or generalize:
 - Private service names.
 - Internal project names.
 - Personal automation details.
+- Private backup repository names and scheduler task names.
 
 Publish templates and examples, not your full private agent brain.
